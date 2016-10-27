@@ -62,3 +62,13 @@ export function beingAsEmoji(str) {
   const regex = /N|S|E|W|(\bLOST\b)|(\bMartian\b)|(\bRobot\b)/g;
   return `${str.replace(regex, strToEmoji)}`;
 }
+
+export const demoInstructions = `5 3
+1 1 E
+RFRFRFRF
+
+3 2 N
+FRRFLLFFRRFLL
+
+0 3 W
+LLFFFLFLFL`;
