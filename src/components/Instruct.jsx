@@ -15,20 +15,12 @@ class Instruct extends Component {
 
   validateInstruction() {
     // we need at least 3 lines to try and do anything valuable
-    if(this.textInstructions.textLength >= 0 &&
-      this.textInstructions.value.trim().split("\n").length >= 3) {
-      console.log(this.textInstructions.textLength, this.submitBtn)
-      this.submitBtn.disabled = false;
-    }
-    else {
-      console.log(this.textInstructions.textLength, this.submitBtn);
-      this.submitBtn.disabled = true;
-    }
+    this.submitBtn.disabled = !(this.textInstructions.textLength >= 0 &&
+      this.textInstructions.value.trim().split("\n").length >= 3);
   }
 
   componentDidMount() {
     this.validateInstruction();
-    // console.log(this.textInstructions.value, this.submitBtn)
   }
 
   render() {
