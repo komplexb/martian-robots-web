@@ -16,9 +16,9 @@ class Instruct extends Component {
     e.preventDefault();
 
     const inputArr = this.textInstructions.value.split("\n\n");
-    // const beforeInstructions = [], afterInstructions = [];
+    // const beforeInstructions = [];
 
-		inputArr.forEach((instruction, i) => {
+		const afterInstructions = inputArr.map((instruction, i) => {
 			let currentInstructionSet = instruction.split("\n");
 
 			if (i === 0) {
@@ -32,11 +32,9 @@ class Instruct extends Component {
       // next linee should be conditional
       let martian = new Robot('', Number.parseInt(posArr[0], 10), Number.parseInt(posArr[1], 10), posArr[2]);  // create a martian/robot with the line 1 of each instruction pair
 
-      // beforeInstructions.push(martian);
-      this.props.addToStore(instruct(martian, currentInstructionSet[1]));
+      return instruct(martian, currentInstructionSet[1]);
 		});
-
-    // this.instructionsForm.reset();
+    this.props.addToStore(afterInstructions);
   }
 
   validateInstruction() {
