@@ -21,16 +21,21 @@ class App extends Component {
   }
 
   addToStore(martian) {
-    // update state cuz y'all need to see
-    const { name, x, y, isAlive, type } = martian;
-    console.log(name, x, y, isAlive, type, martian.toString(type));
-    /*if(mars.getAll().size < mars.add(martian)) {
+    // only save to state if persisted
+    if(mars.getAll().size < mars.add(martian)) {
       const store = {...this.state.store};
-      store[martian.name] = {...martian};
+      const { name, x, y, isAlive, type } = martian;
+      store[name] = {
+        name,
+        x,
+        y,
+        isAlive,
+        type,
+        status: martian.toString(type)
+      };
       this.setState({ store: store });
-    }*/
-
-    // persist in native format to do stuff later
+    }
+    console.log(mars.getAll());
   }
 
   render() {

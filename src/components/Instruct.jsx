@@ -36,10 +36,7 @@ class Instruct extends Component {
       this.props.addToStore(instruct(martian, currentInstructionSet[1]));
 		});
 
-    // const { name, x, y, isAlive, type, toString } = a;
-    // const aLite = {...a};
-
-    // Initialize - show initial position on grid by setting state
+    // this.instructionsForm.reset();
   }
 
   validateInstruction() {
@@ -55,6 +52,7 @@ class Instruct extends Component {
   render() {
     return (
       <form
+        ref={(input) => {this.instructionsForm = input}}
         onSubmit={(e) => this.submitInstructions(e)}>
         <textarea ref={(input) => {this.textInstructions = input}}
           onKeyUp={this.validateInstruction}

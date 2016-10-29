@@ -15,8 +15,7 @@ const _hasScent = new WeakMap();
  * @extends Martian
  */
 export default class MartianRobot extends Martian {
-  /**
-   *
+  
    /**
    *
    * @param {string}   name        robot name: defaults to time string
