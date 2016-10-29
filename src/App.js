@@ -32,7 +32,7 @@ class App extends Component {
           y,
           isAlive,
           type,
-          status: martian.toString(type)
+          status: m.toString(type)
         };
         this.setState({ store: store });
       }
@@ -46,7 +46,7 @@ class App extends Component {
       <div className="App">
         <div>
           <Instruct addToStore={this.addToStore} />
-          <MarsList/>
+          <MarsList store={this.state.store}/>
         </div>
         <div>
           <MarsGrid/>
