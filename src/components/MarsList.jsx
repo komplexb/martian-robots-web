@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
-import { beingAsEmoji } from '../helpers';
+import MarsListItem from './MarsListItem';
 
 class MarsList extends Component {
   render() {
     const store = this.props.store;
-    const mListItems = Object.keys(store)
-      .map(key => <li key={key}>{beingAsEmoji(store[key].status)}</li>)
 
     return (
       <ul>
-        {mListItems}
+        {
+          Object.keys(store)
+            .map(key => <MarsListItem key={key} details={store[key]} />)
+        }
       </ul>
     )
   }

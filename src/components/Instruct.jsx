@@ -57,7 +57,7 @@ class Instruct extends Component {
           name="" id="" cols="30" rows="10"
           defaultValue={demoInstructions}>
         </textarea>
-
+        <br/>
         <button disabled={true}ref={(btn) => {this.submitBtn = btn}}>Instruct</button>
       </form>
     )
