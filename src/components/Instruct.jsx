@@ -3,6 +3,7 @@ import { demoInstructions } from '../helpers';
 import { bounds } from '../config';
 import { instruct } from '../controller';
 import Robot from '../classes/martianRobot';
+import Martian from '../classes/martian';
 
 class Instruct extends Component {
   constructor() {
@@ -12,6 +13,10 @@ class Instruct extends Component {
     this.validateInstruction = this.validateInstruction.bind(this);
   }
 
+  componentDidMount() {
+    this.validateInstruction();
+  }
+
   submitInstructions(e) {
     e.preventDefault();
 
@@ -19,7 +24,7 @@ class Instruct extends Component {
     // const beforeInstructions = [];
 
 		const afterInstructions = inputArr.map((instruction, i) => {
-			let currentInstructionSet = instruction.split("\n");
+			const currentInstructionSet = instruction.split("\n");
 
 			if (i === 0) {
 				var defaultsArr = currentInstructionSet[0].split(" ");
@@ -27,12 +32,16 @@ class Instruct extends Component {
 				bounds.y = defaultsArr[1];
 				currentInstructionSet.shift(); // after we get the bounds delete its element from the instruction array.
 			}
-			let posArr = currentInstructionSet[0].trim().split(" ");
 
-      // next linee should be conditional
-      let martian = new Robot('', Number.parseInt(posArr[0], 10), Number.parseInt(posArr[1], 10), posArr[2]);  // create a martian/robot with the line 1 of each instruction pair
+      const [martianStr, instructionsStr] = currentInstructionSet;
+      const [x, y, o, type = 'R'] = martianStr.trim().split(" ");
 
-      return instruct(martian, currentInstructionSet[1]);
+      // create a martian/robot with the line 1 of each instruction pair
+      if(type.trim().toUpperCase() === 'M') {
+        return instruct(new Martian('', Number.parseInt(x, 10), Number.parseInt(y, 10), o), instructionsStr);
+      }
+
+      return instruct(new Robot('', Number.parseInt(x, 10), Number.parseInt(y, 10), o), instructionsStr);
 		});
     this.props.addToStore(afterInstructions);
   }
@@ -41,10 +50,6 @@ class Instruct extends Component {
     // we need at least 3 lines to try and do anything valuable
     this.submitBtn.disabled = !(this.textInstructions.textLength >= 0 &&
       this.textInstructions.value.trim().split("\n").length >= 3);
-  }
-
-  componentDidMount() {
-    this.validateInstruction();
   }
 
   render() {
@@ -58,9 +63,9 @@ class Instruct extends Component {
           defaultValue={demoInstructions}>
         </textarea>
         <br/>
-        <button disabled={true}ref={(btn) => {this.submitBtn = btn}}>Instruct</button>
+        <button disabled={true} ref={(btn) => {this.submitBtn = btn}}>Instruct</button>
       </form>
-    )
+    );
   }
 }
 
