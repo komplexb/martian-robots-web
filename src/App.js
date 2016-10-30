@@ -46,10 +46,10 @@ class App extends Component {
       <div className="App">
         <div>
           <Instruct addToStore={this.addToStore} />
-          <MarsList store={this.state.store}/>
+          <MarsList store={this.state.store} />
         </div>
         <div>
-          <MarsGrid/>
+          <MarsGrid store={this.state.store} />
         </div>
       </div>
     );
