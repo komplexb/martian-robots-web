@@ -3,20 +3,22 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
+    "eslint": "^3.9.0",
+    "eslint-config-react": "^1.1.7",
+    "eslint-plugin-react": "^6.4.1",
     "react-scripts": "0.7.0"
   },
   "dependencies": {
     "react": "^15.3.2",
+    "react-addons-transition-group": "^15.3.2",
     "react-dom": "^15.3.2",
-    "react-router": "^4.0.0-alpha.3"
+    "react-router": "^4.0.0-alpha.3",
+    "recharts": "^0.15.3"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "./node_modules/react-scripts/config/eslint.js"
   }
 }
