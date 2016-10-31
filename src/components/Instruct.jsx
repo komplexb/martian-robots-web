@@ -20,50 +20,50 @@ class Instruct extends Component {
   submitInstructions(e) {
     e.preventDefault();
 
-    const inputArr = this.textInstructions.value.split("\n\n");
+    const inputArr = this.textInstructions.value.split('\n\n');
     // const beforeInstructions = [];
 
-		const afterInstructions = inputArr.map((instruction, i) => {
-			const currentInstructionSet = instruction.split("\n");
+    const afterInstructions = inputArr.map((instruction, i) => {
+      const currentInstructionSet = instruction.split('\n');
 
-			if (i === 0) {
-				var defaultsArr = currentInstructionSet[0].split(" ");
-				bounds.x = defaultsArr[0];
-				bounds.y = defaultsArr[1];
-				currentInstructionSet.shift(); // after we get the bounds delete its element from the instruction array.
-			}
+      if (i === 0) {
+        const defaultsArr = currentInstructionSet[0].split(' ');
+        bounds.x = defaultsArr[0];
+        bounds.y = defaultsArr[1];
+        currentInstructionSet.shift(); // after we get the bounds delete its element from the instruction array.
+      }
 
       const [martianStr, instructionsStr] = currentInstructionSet;
-      const [x, y, o, type = 'R'] = martianStr.trim().split(" ");
+      const [x, y, o, type = 'R'] = martianStr.trim().split(' ');
 
       // create a martian/robot with the line 1 of each instruction pair
-      if(type.trim().toUpperCase() === 'M') {
+      if (type.trim().toUpperCase() === 'M') {
         return instruct(new Martian('', Number.parseInt(x, 10), Number.parseInt(y, 10), o), instructionsStr);
       }
 
       return instruct(new Robot('', Number.parseInt(x, 10), Number.parseInt(y, 10), o), instructionsStr);
-		});
+    });
     this.props.addToStore(afterInstructions);
   }
 
   validateInstruction() {
     // we need at least 3 lines to try and do anything valuable
     this.submitBtn.disabled = !(this.textInstructions.textLength >= 0 &&
-      this.textInstructions.value.trim().split("\n").length >= 3);
+      this.textInstructions.value.trim().split('\n').length >= 3);
   }
 
   render() {
     return (
-      <form
-        ref={(input) => {this.instructionsForm = input}}
-        onSubmit={(e) => this.submitInstructions(e)}>
-        <textarea ref={(input) => {this.textInstructions = input}}
+      <form ref={input => this.instructionsForm = input} onSubmit={e => this.submitInstructions(e)}>
+        <textarea
+          ref={input => this.textInstructions = input}
           onKeyUp={this.validateInstruction}
-          name="" id="" cols="30" rows="10"
-          defaultValue={demoInstructions}>
+          name='' id='' cols='30' rows='10'
+          defaultValue={demoInstructions}
+        >
         </textarea>
         <br/>
-        <button disabled={true} ref={(btn) => {this.submitBtn = btn}}>Instruct</button>
+        <button disabled={true} ref={btn => this.submitBtn = btn}>Instruct</button>
       </form>
     );
   }
