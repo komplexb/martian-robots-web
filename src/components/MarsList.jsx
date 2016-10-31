@@ -19,11 +19,11 @@ class MarsList extends Component {
     return (
       <div>
         <div>
-          Filter: 
-          <button onClick={(e) => this.marsViews(e)}>All</button>
-          <button onClick={(e) => this.marsViews(e, 'R')}>🤖</button>
-          <button onClick={(e) => this.marsViews(e, 'M')}>👾</button>
-          <button onClick={(e) => this.marsViews(e, 'L')}>🆘</button>
+          Filter:
+          <button onClick={e => this.marsViews(e)}>All</button>
+          <button onClick={e => this.marsViews(e, 'R')}>🤖</button>
+          <button onClick={e => this.marsViews(e, 'M')}>👾</button>
+          <button onClick={e => this.marsViews(e, 'L')}>🆘</button>
         </div>
         <ul>
           {
@@ -32,7 +32,7 @@ class MarsList extends Component {
           }
         </ul>
       </div>
-    )
+    );
   }
 }
 
