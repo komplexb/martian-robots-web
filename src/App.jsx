@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Instruct from './components/Instruct'
-import MarsList from './components/MarsList'
-import MarsGrid from './components/MarsGrid'
+import Instruct from './components/Instruct';
+import MarsList from './components/MarsList';
+import MarsGrid from './components/MarsGrid';
 import { default as Store } from './store';
 import { filterMars } from './controller';
 
@@ -19,14 +19,14 @@ class App extends Component {
       initialStore: {},
       store: {},
       lostList: {}
-    }
+    };
   }
 
   addToStore(martians) {
-    const store = {...this.state.store};
+    const store = { ...this.state.store };
 
-    martians.forEach(m => {
-      if(mars.getAll().size < mars.add(m)) {
+    martians.forEach((m) => {
+      if (mars.getAll().size < mars.add(m)) {
         store[m.name] = m.plainObject;
         this.setState({ store: store });
       }
@@ -36,7 +36,7 @@ class App extends Component {
   }
 
   filterStore(condition) {
-    switch(condition) {
+    switch (condition) {
       case 'L':
         this.setState({ store: filterMars(mars.getAll().values(), false, 'isAlive') });
         break;
@@ -56,7 +56,7 @@ class App extends Component {
       <div className="App">
         <div>
           <Instruct addToStore={this.addToStore} />
-          <br/>
+          <br />
           <MarsList store={this.state.store} filterStore={this.filterStore} />
         </div>
         <div>

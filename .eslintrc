@@ -18,5 +18,10 @@
     "max-len": [1, { "ignoreComments": true, "ignoreTrailingComments": true }],
     "class-methods-use-this": 1,
     "space-before-function-paren": ["error", "never"],
+    "object-shorthand": 1,
+    "self-closing-comp": ["error", {
+      "component": false,
+      "html": true
+    }]
   }
 }
