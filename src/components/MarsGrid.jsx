@@ -6,6 +6,12 @@ class MarsGrid extends Component {
 
   render() {
     const store = this.props.store;
+
+    /*
+     * this doesn't seem like the best move since state may already be filtered
+     * i was thinking about passing the filtered arrays as props
+     * but it seems like duplicated effort, will think about it and try again later
+     */
     const robots = Object.keys(store)
       .filter(key => store[key].type === 'Robot')
       .map(value => store[value]);

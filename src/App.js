@@ -22,20 +22,12 @@ class App extends Component {
     }
   }
 
-  addToStore(martian) {
+  addToStore(martians) {
     const store = {...this.state.store};
 
-    martian.forEach(m => {
+    martians.forEach(m => {
       if(mars.getAll().size < mars.add(m)) {
-        const { name, x, y, isAlive, type } = m;
-        store[name] = {
-          name,
-          x,
-          y,
-          isAlive,
-          type,
-          status: m.toString(type)
-        };
+        store[m.name] = m.plainObject;
         this.setState({ store: store });
       }
     });
