@@ -74,3 +74,28 @@ export function searchMars(mars, condition, property = 'type') {
 
   return { array: arr.array, string: arr.string };
 }
+
+
+/**
+ *
+ * @param   {Map.values}    mars      collection of martians and robots to filter
+ * @param   {string|binary} condition value to filter against
+ * @param   {string} property  = 'type' martian or robot property to compare condition
+ * @returns {Array} filtered array with formatted filtered results
+ * returns string with emoji if OSX (Darwin)
+ */
+export function filterMars(mars, condition, property = 'type') {
+  return [...mars].filter(value => value[property] === condition)
+    .map((value) => {
+      const { name, x, y, isAlive, type } = value;
+
+      return {
+        name,
+        x,
+        y,
+        isAlive,
+        type,
+        status: value.toString(type)
+      };
+    });
+}

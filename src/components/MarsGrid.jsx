@@ -6,7 +6,6 @@ const Recharts = require('recharts');
 class MarsGrid extends Component {
 
   render() {
-    const CustomTooltip = 'test';
     const store = this.props.store;
     const robots = Object.keys(store)
       .filter(key => store[key].type === 'Robot')
