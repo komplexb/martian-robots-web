@@ -46,16 +46,16 @@ class App extends Component {
   filterStore(condition) {
     switch(condition) {
       case 'L':
-        this.setState({ store: filterMars(mars.getAll().values(), false, 'isAlive')});
+        this.setState({ store: filterMars(mars.getAll().values(), false, 'isAlive') });
         break;
       case 'R':
-        this.setState({ store: filterMars(mars.getAll().values(), 'Robot')});
+        this.setState({ store: filterMars(mars.getAll().values(), 'Robot') });
         break;
       case 'M':
-        this.setState({ store: filterMars(mars.getAll().values(), 'Martian')});
+        this.setState({ store: filterMars(mars.getAll().values(), 'Martian') });
         break;
       default:
-        // soon come
+        this.setState({ store: [...mars.getAll().values()].map(value => value.plainObject) });
     }
   }
 

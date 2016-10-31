@@ -127,4 +127,15 @@ export default class Martian {
   get type() {
     return 'Martian';
   }
+
+  get plainObject() {
+    return {
+      name: this.name,
+      x: this.x,
+      y: this.y,
+      isAlive: this.isAlive,
+      type: this.type,
+      status: this.toString(true)
+    }
+  }
 }

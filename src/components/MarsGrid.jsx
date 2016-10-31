@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { beingAsEmoji } from '../helpers';
 
 const Recharts = require('recharts');
 
