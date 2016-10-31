@@ -56,6 +56,7 @@ class App extends Component {
       <div className="App">
         <div>
           <Instruct addToStore={this.addToStore} />
+          <br/>
           <MarsList store={this.state.store} filterStore={this.filterStore} />
         </div>
         <div>
