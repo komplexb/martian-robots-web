@@ -12,16 +12,14 @@ export function CustomTooltip(props) {
       <div className='custom-tooltip'>
         <p className='desc'>{`${beingAsEmoji(payload[2].value)}`}</p>
       </div>
-    )
+    );
   }
 
   return null;
 }
 
 CustomTooltip.propTypes = {
-  type: PropTypes.string,
   payload: PropTypes.array,
-  label: PropTypes.string,
 };
 
 class MarsGrid extends Component {
@@ -43,15 +41,13 @@ class MarsGrid extends Component {
 
     const { ScatterChart, Scatter, XAxis, YAxis, ZAxis, CartesianGrid, Tooltip, Legend } = Recharts;
 
-    const robotEmoji = <span>🤖</span>;
-
     return (
       <ScatterChart width={400} height={400} margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
         <XAxis dataKey={'x'} name='x' allowDecimals={true} />
         <YAxis dataKey={'y'} name='y' allowDecimals={true} />
         <ZAxis dataKey={'status'} name='status' />
         <CartesianGrid />
-        <Tooltip cursor={{ strokeDasharray: '3 3' }} content={<CustomTooltip/>} />
+        <Tooltip cursor={{ strokeDasharray: '3 3' }} content={<CustomTooltip />} />
         <Legend />
         <Scatter name='Robots' data={robots} fill='gray' shape='triangle' />
         <Scatter name='Martians' data={martians} fill='red' shape='wye' />
