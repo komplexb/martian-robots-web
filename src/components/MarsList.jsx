@@ -6,11 +6,20 @@ class MarsList extends Component {
     super();
 
     this.marsViews = this.marsViews.bind(this);
+    this.toggleFilters = this.toggleFilters.bind(this);
   }
 
   marsViews(e, condition) {
     e.preventDefault();
     this.props.filterStore(condition);
+  }
+
+  componentDidMount() {
+    // this.toggleFilters();
+  }
+
+  toggleFilters() {
+
   }
 
   render() {
