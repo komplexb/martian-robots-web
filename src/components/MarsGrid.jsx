@@ -12,8 +12,8 @@ class CustomTooltip extends Component {
       // console.log(payload);
 
       return (
-        <div className="custom-tooltip">
-          <p className="desc">{`${beingAsEmoji(payload[2].value)}`}</p>
+        <div className='custom-tooltip'>
+          <p className='desc'>{`${beingAsEmoji(payload[2].value)}`}</p>
         </div>
       )
     }
@@ -21,10 +21,10 @@ class CustomTooltip extends Component {
 }
 
 CustomTooltip.propTypes = {
-  type: React.PropTypes.string,
-  payload: React.PropTypes.array,
-  label: React.PropTypes.string,
-}
+  type: PropTypes.string,
+  payload: PropTypes.array,
+  label: PropTypes.string,
+};
 
 class MarsGrid extends Component {
 
@@ -55,8 +55,8 @@ class MarsGrid extends Component {
         <CartesianGrid />
         <Tooltip cursor={{ strokeDasharray: '3 3' }} content={<CustomTooltip/>} />
         <Legend />
-        <Scatter name='Robots' data={robots} fill='gray' shape="triangle" />
-        <Scatter name='Martians' data={martians} fill='red' shape="wye" />
+        <Scatter name='Robots' data={robots} fill='gray' shape='triangle' />
+        <Scatter name='Martians' data={martians} fill='red' shape='wye' />
       </ScatterChart>
     );
   }

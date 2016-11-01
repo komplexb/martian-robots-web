@@ -19,5 +19,7 @@
     "class-methods-use-this": 1,
     "space-before-function-paren": ["error", "never"],
     "object-shorthand": 1,
+    "jsx-quotes": ["error", "prefer-single"],
+    "prop-types": 1
   }
 }

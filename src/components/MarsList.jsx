@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import MarsListItem from './MarsListItem';
 
 class MarsList extends Component {
@@ -6,7 +6,11 @@ class MarsList extends Component {
     super();
 
     this.marsViews = this.marsViews.bind(this);
-    this.toggleFilters = this.toggleFilters.bind(this);
+    // this.toggleFilters = this.toggleFilters.bind(this);
+  }
+
+  componentDidMount() {
+    // this.toggleFilters();
   }
 
   marsViews(e, condition) {
@@ -14,13 +18,11 @@ class MarsList extends Component {
     this.props.filterStore(condition);
   }
 
-  componentDidMount() {
-    // this.toggleFilters();
-  }
-
+  /*
   toggleFilters() {
 
   }
+  */
 
   render() {
     const store = this.props.store;
@@ -44,5 +46,10 @@ class MarsList extends Component {
     );
   }
 }
+
+MarsList.propTypes = {
+  filterStore: PropTypes.func.isRequired,
+  store: PropTypes.object.isRequired
+};
 
 export default MarsList;

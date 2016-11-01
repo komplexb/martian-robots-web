@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { demoInstructions } from '../helpers';
 import { bounds } from '../config';
 import { instruct } from '../controller';
@@ -25,8 +25,6 @@ class Instruct extends Component {
 
     const afterInstructions = inputArr.map((instruction, i) => {
       const currentInstructionSet = instruction.split('\n');
-
-      console.log(`bounds: ${bounds.isSet}`, bounds.point);
 
       if (i === 0) {
         const defaultsArr = currentInstructionSet[0].split(' ');
@@ -72,5 +70,9 @@ class Instruct extends Component {
     );
   }
 }
+
+Instruct.propTypes = {
+  addToStore: PropTypes.func.isRequired,
+};
 
 export default Instruct;
