@@ -7,7 +7,7 @@ class MarsListItem extends Component {
 
     return (
       <li>
-        <button>{beingAsEmoji(details.status)}</button>
+        <button>{details.status}</button>
       </li>
     )
   }

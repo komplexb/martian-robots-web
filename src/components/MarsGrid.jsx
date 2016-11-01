@@ -1,6 +1,30 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
+import { beingAsEmoji } from '../helpers';
 
 const Recharts = require('recharts');
+
+class CustomTooltip extends Component {
+  render() {
+    const { active } = this.props;
+
+    if (active) {
+      const { payload } = this.props;
+      // console.log(payload);
+
+      return (
+        <div className="custom-tooltip">
+          <p className="desc">{`${beingAsEmoji(payload[2].value)}`}</p>
+        </div>
+      )
+    }
+  }
+}
+
+CustomTooltip.propTypes = {
+  type: React.PropTypes.string,
+  payload: React.PropTypes.array,
+  label: React.PropTypes.string,
+}
 
 class MarsGrid extends Component {
 
@@ -19,15 +43,17 @@ class MarsGrid extends Component {
       .filter(key => store[key].type === 'Martian')
       .map(value => store[value]);
 
-      const { ScatterChart, Scatter, XAxis, YAxis, ZAxis, CartesianGrid, Tooltip, Legend } = Recharts;
+    const { ScatterChart, Scatter, XAxis, YAxis, ZAxis, CartesianGrid, Tooltip, Legend } = Recharts;
+
+    const robotEmoji = <span>🤖</span>;
 
     return (
       <ScatterChart width={400} height={400} margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
-        <XAxis dataKey={'x'} name='x' />
-        <YAxis dataKey={'y'} name='y' />
-        {/* <ZAxis dataKey={'z'} range={[60, 400]} name='score' unit='km'/> */}
+        <XAxis dataKey={'x'} name='x' allowDecimals={true} />
+        <YAxis dataKey={'y'} name='y' allowDecimals={true} />
+        <ZAxis dataKey={'status'} name='status' />
         <CartesianGrid />
-        <Tooltip cursor={{ strokeDasharray: '3 3' }} />
+        <Tooltip cursor={{ strokeDasharray: '3 3' }} content={<CustomTooltip/>} />
         <Legend />
         <Scatter name='Robots' data={robots} fill='gray' shape="triangle" />
         <Scatter name='Martians' data={martians} fill='red' shape="wye" />
