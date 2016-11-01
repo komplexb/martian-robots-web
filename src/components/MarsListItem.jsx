@@ -1,16 +1,13 @@
-import React, { Component } from 'react';
-import { beingAsEmoji } from '../helpers';
+import React, { PropTypes } from 'react';
 
-class MarsListItem extends Component {
-  render() {
-    const details = this.props.details;
-
-    return (
-      <li>
-        <button>{details.status}</button>
-      </li>
-    )
-  }
+export default function MarsListItem(props) {
+  return (
+    <li>
+      <button>{props.details.status}</button>
+    </li>
+  );
 }
 
-export default MarsListItem;
+MarsListItem.propTypes = {
+  details: PropTypes.object.isRequired,
+};
