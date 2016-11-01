@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react';
 export default function MarsListItem(props) {
   return (
     <li>
-      <button>{props.details.status}</button>
+      {props.details.status}
     </li>
   );
 }
