@@ -20,6 +20,9 @@
     "space-before-function-paren": ["error", "never"],
     "object-shorthand": 1,
     "jsx-quotes": ["error", "prefer-single"],
-    "prop-types": 1
+    "prop-types": 1,
+    "no-return-assign": 1,
+    "self-closing-comp": 1,
+    "jsx-boolean-value": 0
   }
 }
