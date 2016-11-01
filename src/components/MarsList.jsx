@@ -45,14 +45,14 @@ class MarsList extends Component {
       </div>
     );
   }
-}
 
-MarsList.propTypes = {
-  filterStore: PropTypes.func.isRequired,
-  store: PropTypes.oneOfType([
-    PropTypes.object,
-    PropTypes.array,
-  ])
-};
+  static propTypes = {
+    filterStore: PropTypes.func.isRequired,
+    store: PropTypes.oneOfType([
+      PropTypes.object,
+      PropTypes.array,
+    ])
+  };
+}
 
 export default MarsList;

@@ -69,10 +69,11 @@ class Instruct extends Component {
       </form>
     );
   }
-}
 
-Instruct.propTypes = {
-  addToStore: PropTypes.func.isRequired,
-};
+  static propTypes = {
+    addToStore: PropTypes.func.isRequired,
+  };
+
+}
 
 export default Instruct;
