@@ -26,10 +26,14 @@ class Instruct extends Component {
     const afterInstructions = inputArr.map((instruction, i) => {
       const currentInstructionSet = instruction.split('\n');
 
+      console.log(`bounds: ${bounds.isSet}`, bounds.point);
+
       if (i === 0) {
         const defaultsArr = currentInstructionSet[0].split(' ');
-        bounds.x = defaultsArr[0];
-        bounds.y = defaultsArr[1];
+        if (bounds.isSet === false) {
+          bounds.x = defaultsArr[0];
+          bounds.y = defaultsArr[1];
+        }
         currentInstructionSet.shift(); // after we get the bounds delete its element from the instruction array.
       }
 
