@@ -3,6 +3,7 @@ Instructions and associated values are valid for one session; i.e. only the valu
 1. Enter instructions or use the Sample Input.  
 2. Click "Instruct".  
 3. To validate app functionality, read the extract below to come up with valid instructions. Manually trace your instructions on along the grid to determine the final position and output. Insert these instructions into the app and test the output against your manual output.  
+4. Or try the CLI version: https://github.com/komplexb/martian-robots
 
 ## About ##
 
