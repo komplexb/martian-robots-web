@@ -3,21 +3,19 @@ import { beingAsEmoji } from '../helpers';
 
 const Recharts = require('recharts');
 
-class CustomTooltip extends Component {
-  render() {
-    const { active } = this.props;
+export function CustomTooltip(props) {
+  if (props.active) {
+    const { payload } = props;
+    // console.log(payload);
 
-    if (active) {
-      const { payload } = this.props;
-      // console.log(payload);
-
-      return (
-        <div className='custom-tooltip'>
-          <p className='desc'>{`${beingAsEmoji(payload[2].value)}`}</p>
-        </div>
-      )
-    }
+    return (
+      <div className='custom-tooltip'>
+        <p className='desc'>{`${beingAsEmoji(payload[2].value)}`}</p>
+      </div>
+    )
   }
+
+  return null;
 }
 
 CustomTooltip.propTypes = {
@@ -61,5 +59,9 @@ class MarsGrid extends Component {
     );
   }
 }
+
+MarsGrid.propTypes = {
+  store: PropTypes.object
+};
 
 export default MarsGrid;
