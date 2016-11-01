@@ -49,7 +49,10 @@ class MarsList extends Component {
 
 MarsList.propTypes = {
   filterStore: PropTypes.func.isRequired,
-  store: PropTypes.object.isRequired
+  store: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.array,
+  ])
 };
 
 export default MarsList;

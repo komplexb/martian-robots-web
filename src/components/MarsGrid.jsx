@@ -61,7 +61,10 @@ class MarsGrid extends Component {
 }
 
 MarsGrid.propTypes = {
-  store: PropTypes.object
+  store: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.array,
+  ])
 };
 
 export default MarsGrid;
