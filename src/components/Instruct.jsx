@@ -57,15 +57,17 @@ class Instruct extends Component {
   render() {
     return (
       <form ref={input => this.instructionsForm = input} onSubmit={e => this.submitInstructions(e)}>
-        <textarea
-          ref={input => this.textInstructions = input}
-          onKeyUp={this.validateInstruction}
-          name='' id='' cols='30' rows='10'
-          defaultValue={demoInstructions}
-        >
-        </textarea>
-        <br />
-        <button disabled={true} ref={btn => this.submitBtn = btn}>Instruct</button>
+        <label>
+          Please enter intructions or use the demo instructions:
+          <textarea
+            ref={input => this.textInstructions = input}
+            onKeyUp={this.validateInstruction}
+            name='' id='' cols='30' rows='10'
+            defaultValue={demoInstructions}
+          >
+          </textarea>
+        </label>
+        <button className='success button' disabled={true} ref={btn => this.submitBtn = btn}>Instruct</button>
       </form>
     );
   }

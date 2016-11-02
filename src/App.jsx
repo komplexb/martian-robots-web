@@ -4,6 +4,9 @@ import MarsList from './components/MarsList';
 import MarsGrid from './components/MarsGrid';
 import FilterButtons from './components/FilterButtons';
 
+import './css/foundation.min.css';
+import './css/app.css';
+
 import { default as Store } from './store';
 import { filterMars } from './controller';
 
@@ -55,14 +58,15 @@ class App extends Component {
 
   render() {
     return (
-      <div className='App'>
-        <div>
+      <div className='row' id='content'>
+        <div className='medium-4 columns'>
           <Instruct addToStore={this.addToStore} />
-          <br />
+        </div>
+        <div className="medium-4 columns">
           <FilterButtons store={this.state.store} filterStore={this.filterStore} />
           <MarsList store={this.state.store} />
         </div>
-        <div>
+        <div className='medium-4 columns'>
           <MarsGrid store={this.state.store} />
         </div>
       </div>

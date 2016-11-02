@@ -20,17 +20,20 @@ class FilterButtons extends Component {
     const filterArr = [['R', '🤖', 'Show all Robots'], ['M', '👾', 'Show all Martians'], ['L', '🆘', 'Show all Lost Robots']];
     const FilterButton = filterArr
       .map(([param, icon, title], i) => {
-        return <button key={i}
+        return <button className='button' key={i+1}
         disabled={isStoreEmpty}
         title={title}
         onClick={e => this.marsViews(e, param)}>{icon}</button>;
     });
+    // not in filter array because it shouldn't be disabled at any point
+    FilterButton.unshift(<button className='button' key='0' onClick={e => this.marsViews(e)} title='Reset Filter'>🔁</button>);
 
     return (
       <div>
-        Filter:
-        <button onClick={e => this.marsViews(e)} title='Reset Filter'>🔁</button>
-        {FilterButton}
+        <label htmlFor="">Filter:</label>
+        <div className='small expanded button-group'>
+          {FilterButton}
+        </div>
       </div>
     );
   }
