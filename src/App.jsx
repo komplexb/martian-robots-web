@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Instruct from './components/Instruct';
 import MarsList from './components/MarsList';
 import MarsGrid from './components/MarsGrid';
+import FilterButtons from './components/FilterButtons';
+
 import { default as Store } from './store';
 import { filterMars } from './controller';
 
@@ -57,7 +59,8 @@ class App extends Component {
         <div>
           <Instruct addToStore={this.addToStore} />
           <br />
-          <MarsList store={this.state.store} filterStore={this.filterStore} />
+          <FilterButtons store={this.state.store} filterStore={this.filterStore} />
+          <MarsList store={this.state.store} />
         </div>
         <div>
           <MarsGrid store={this.state.store} />
