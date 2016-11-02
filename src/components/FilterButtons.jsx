@@ -20,7 +20,10 @@ class FilterButtons extends Component {
     const filterArr = [['R', '🤖', 'Show all Robots'], ['M', '👾', 'Show all Martians'], ['L', '🆘', 'Show all Lost Robots']];
     const FilterButton = filterArr
       .map(([param, icon, title], i) => {
-        return <button key={i} disabled={isStoreEmpty} title={title} onClick={e => this.marsViews(e, param)}>{icon}</button>;
+        return <button key={i}
+        disabled={isStoreEmpty}
+        title={title}
+        onClick={e => this.marsViews(e, param)}>{icon}</button>;
     });
 
     return (
