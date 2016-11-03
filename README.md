@@ -3,6 +3,7 @@
 Jokes aside, I wanted to build something small to apply some of my learnings from the [reactforbeginners.com](https://goo.gl/4hT3DU) course. It essentially builds on my [CLI demo of Martian Robots](https://github.com/komplexb/martian-robots).  
 
 ### How to use ###
+![How to use.](http://g.recordit.co/gkae2h6qRX.gif)  
 Instructions and associated values are valid for one session; i.e. only the values of the current session affect positions on the grid. A session is demarcated by clicking "Initialize Bots"; doing so clears all values from the previous session (except the 'lost' position values of previous robots).  
 1. Enter instructions or use the Sample Input.  
 2. Click "Instruct".  
