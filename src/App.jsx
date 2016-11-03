@@ -4,8 +4,6 @@ import MarsList from './components/MarsList';
 import MarsGrid from './components/MarsGrid';
 import FilterButtons from './components/FilterButtons';
 
-import './css/foundation.min.css';
-
 import { default as Store } from './store';
 import { filterMars } from './controller';
 
