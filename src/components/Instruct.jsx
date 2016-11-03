@@ -62,7 +62,7 @@ class Instruct extends Component {
           <textarea
             ref={input => this.textInstructions = input}
             onKeyUp={this.validateInstruction}
-            name='' id='' cols='30' rows='10'
+            name='' id='' cols='30' rows='5'
             defaultValue={demoInstructions}
           >
           </textarea>
