@@ -59,14 +59,14 @@ class App extends Component {
   render() {
     return (
       <div className='row' id='content'>
-        <div className='medium-4 columns'>
+        <div className='small-12 medium-6 large-4 columns'>
           <Instruct addToStore={this.addToStore} />
         </div>
-        <div className="medium-4 columns">
+        <div className="small-12 medium-6 large-4 columns">
           <FilterButtons store={this.state.store} filterStore={this.filterStore} />
           <MarsList store={this.state.store} />
         </div>
-        <div className='medium-4 columns'>
+        <div className='small-12 medium-12 large-4 columns'>
           <MarsGrid store={this.state.store} />
         </div>
       </div>
