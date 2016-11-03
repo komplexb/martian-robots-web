@@ -50,7 +50,7 @@ class Instruct extends Component {
 
   validateInstruction() {
     // we need at least 3 lines to try and do anything valuable
-    this.submitBtn.disabled = !(this.textInstructions.textLength >= 0 &&
+    this.submitBtn.disabled = !(this.textInstructions.value.length >= 0 &&
       this.textInstructions.value.trim().split('\n').length >= 3);
   }
 
