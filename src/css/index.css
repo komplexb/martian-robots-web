@@ -7,3 +7,23 @@ body {
 .recharts-wrapper {
   left: -60px;
 }
+
+#txtIntructions {
+  height: 200px;
+}
+
+@media screen and (min-width: 40em) {
+  #txtIntructions {
+    height: 320px;
+  }
+}
+
+.recharts-layer path[fill='red'] {
+  stroke-width: 5;
+  stroke: red;
+}
+
+.recharts-layer path[fill='gray'] {
+  stroke-width: 5;
+  stroke: gray;
+}

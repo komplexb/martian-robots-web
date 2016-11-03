@@ -60,9 +60,11 @@ class Instruct extends Component {
         <label>
           Please enter intructions or use the demo instructions:
           <textarea
+            id='txtIntructions'
             ref={input => this.textInstructions = input}
             onKeyUp={this.validateInstruction}
-            name='' id='' cols='30' rows='5'
+            onBlur={this.validateInstruction}
+            cols='30'
             defaultValue={demoInstructions}
           >
           </textarea>
