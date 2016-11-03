@@ -56,6 +56,10 @@ class App extends Component {
   }
 
   render() {
+    const instructWrapper = {
+      marginTop: '100px'
+    };
+
     return (
       <div className='row' id='content'>
         <div id='instruct' className='small-12 medium-6 large-4 columns'>
