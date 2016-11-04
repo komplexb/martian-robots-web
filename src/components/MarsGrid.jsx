@@ -23,19 +23,6 @@ CustomTooltip.propTypes = {
 };
 
 export default function MarsGrid(props) {
-  const store = props.store;
-
-  /*
-   * this doesn't seem like the best move since state may already be filtered
-   * i was thinking about passing the filtered arrays as props
-   * but it seems like duplicated effort, will think about it and try again later
-   */
-  const robots = Object.keys(store)
-    .filter(key => store[key].type === 'Robot')
-    .map(value => store[value]);
-  const martians = Object.keys(store)
-    .filter(key => store[key].type === 'Martian')
-    .map(value => store[value]);
 
   const { ScatterChart, Scatter, XAxis, YAxis, ZAxis, CartesianGrid, Tooltip, Legend } = Recharts;
 
@@ -49,8 +36,8 @@ export default function MarsGrid(props) {
         <CartesianGrid />
         <Tooltip cursor={{ strokeDasharray: '3 3' }} content={<CustomTooltip />} />
         <Legend />
-        <Scatter name='Robots' data={robots} fill='gray' shape='triangle' />
-        <Scatter name='Martians' data={martians} fill='red' shape='wye' />
+        <Scatter name='Robots' data={props.robots} fill='gray' shape='triangle' />
+        <Scatter name='Martians' data={props.martians} fill='red' shape='wye' />
       </ScatterChart>
     </div>
   );

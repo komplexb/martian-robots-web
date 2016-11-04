@@ -50,6 +50,14 @@ class App extends Component {
     }
   }
 
+  filterStateStore = (type) => {
+    const store = this.state.store;
+
+    return Object.keys(store)
+      .filter(key => store[key].type === type)
+      .map(value => store[value]);
+  }
+
   render() {
     return (
       <div className='row' id='content'>
@@ -61,7 +69,7 @@ class App extends Component {
           <MarsList store={this.state.store} />
         </div>
         <div id='grid' className='small-12 medium-12 large-4 columns'>
-          <MarsGrid store={this.state.store} />
+          <MarsGrid robots={this.filterStateStore('Robot')} martians={this.filterStateStore('Martian')} />
         </div>
       </div>
     );
