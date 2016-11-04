@@ -7,14 +7,21 @@ import Martian from '../classes/martian';
 
 class Instruct extends Component {
 
-  componentDidMount() {
-    this.validateInstruction();
+  constructor(props) {
+    super(props);
+
+    this.state = {txtInstructions: ''};
+  }
+
+  handleInstructionChange = (event) => {
+    this.setState({txtInstructions: event.target.value});
+    console.log(this.state.txtInstructions);
   }
 
   submitInstructions = (e) => {
     e.preventDefault();
 
-    const inputArr = this.textInstructions.value.split('\n\n');
+    const inputArr = this.state.txtInstructions.split('\n\n');
     // const beforeInstructions = [];
 
     const afterInstructions = inputArr.map((instruction, i) => {
@@ -48,6 +55,12 @@ class Instruct extends Component {
       this.textInstructions.value.trim().split('\n').length >= 3);
   }
 
+  isValidInstruction = () => {
+    // we need at least 3 lines to try and do anything valuable
+    return !(this.state.txtInstructions.length >= 0 &&
+      this.state.txtInstructions.trim().split('\n').length >= 3);
+  }
+
   render() {
     return (
       <form ref={input => this.instructionsForm = input} onSubmit={e => this.submitInstructions(e)}>
@@ -55,14 +68,13 @@ class Instruct extends Component {
           Please enter intructions or use the demo instructions:
           <textarea
             id='txtIntructions'
-            ref={input => this.textInstructions = input}
-            onChange={this.validateInstruction}
+            onChange={this.handleInstructionChange}
             cols='30'
-            defaultValue={demoInstructions}
+            value={this.state.txtInstructions}
           >
           </textarea>
         </label>
-        <button className='success button' disabled={true} ref={btn => this.submitBtn = btn}>Instruct</button>
+        <button className='success button' disabled={this.isValidInstruction()} >Instruct</button>
       </form>
     );
   }
