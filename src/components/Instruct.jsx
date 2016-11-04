@@ -20,7 +20,8 @@ class Instruct extends Component {
     this.setState({txtInstructions: event.target.value});
   }
 
-  setDemoText = (event) => {
+  setDemoText = (e) => {
+    e.preventDefault();
     this.setState({txtInstructions: demoInstructions});
   }
 
