@@ -18,7 +18,10 @@ class Instruct extends Component {
 
   handleInstructionChange = (event) => {
     this.setState({txtInstructions: event.target.value});
-    console.log(this.state.txtInstructions);
+  }
+
+  setDemoText = (event) => {
+    this.setState({txtInstructions: demoInstructions});
   }
 
   submitInstructions = (e) => {
@@ -78,6 +81,8 @@ class Instruct extends Component {
           </textarea>
         </label>
         <button className='success button' disabled={this.isValidInstruction()} >Instruct</button>
+        &nbsp;&nbsp;
+        <button className='button' type='button' onClick={this.setDemoText} >Demo Instructions</button>
       </form>
     );
   }
