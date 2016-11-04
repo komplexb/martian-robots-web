@@ -6,8 +6,8 @@ import Robot from '../classes/martianRobot';
 import Martian from '../classes/martian';
 
 class Instruct extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.submitInstructions = this.submitInstructions.bind(this);
     this.validateInstruction = this.validateInstruction.bind(this);

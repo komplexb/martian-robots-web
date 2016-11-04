@@ -2,8 +2,8 @@ import React, { Component, PropTypes } from 'react';
 
 
 class FilterButtons extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.marsViews = this.marsViews.bind(this);
   }

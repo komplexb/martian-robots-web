@@ -10,8 +10,8 @@ import { filterMars } from './controller';
 const mars = new Store();
 
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.addToStore = this.addToStore.bind(this);
     this.filterStore = this.filterStore.bind(this);
