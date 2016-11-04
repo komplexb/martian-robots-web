@@ -1,9 +1,12 @@
 import React, { Component, PropTypes } from 'react';
+import Chance from 'chance';
 import { demoInstructions } from '../helpers';
 import { bounds } from '../config';
 import { instruct } from '../controller';
 import Robot from '../classes/martianRobot';
 import Martian from '../classes/martian';
+
+const chance = new Chance();
 
 class Instruct extends Component {
 
@@ -41,10 +44,10 @@ class Instruct extends Component {
 
       // create a martian/robot with the line 1 of each instruction pair
       if (type.trim().toUpperCase() === 'M') {
-        return instruct(new Martian('', Number.parseInt(x, 10), Number.parseInt(y, 10), o), instructionsStr);
+        return instruct(new Martian(chance.syllable(), Number.parseInt(x, 10), Number.parseInt(y, 10), o), instructionsStr);
       }
 
-      return instruct(new Robot('', Number.parseInt(x, 10), Number.parseInt(y, 10), o), instructionsStr);
+      return instruct(new Robot(chance.syllable(), Number.parseInt(x, 10), Number.parseInt(y, 10), o), instructionsStr);
     });
     this.props.addToStore(afterInstructions);
   }
