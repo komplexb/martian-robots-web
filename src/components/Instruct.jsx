@@ -6,18 +6,12 @@ import Robot from '../classes/martianRobot';
 import Martian from '../classes/martian';
 
 class Instruct extends Component {
-  constructor(props) {
-    super(props);
-
-    this.submitInstructions = this.submitInstructions.bind(this);
-    this.validateInstruction = this.validateInstruction.bind(this);
-  }
 
   componentDidMount() {
     this.validateInstruction();
   }
 
-  submitInstructions(e) {
+  submitInstructions = (e) => {
     e.preventDefault();
 
     const inputArr = this.textInstructions.value.split('\n\n');
@@ -48,7 +42,7 @@ class Instruct extends Component {
     this.props.addToStore(afterInstructions);
   }
 
-  validateInstruction() {
+  validateInstruction = () => {
     // we need at least 3 lines to try and do anything valuable
     this.submitBtn.disabled = !(this.textInstructions.value.length >= 0 &&
       this.textInstructions.value.trim().split('\n').length >= 3);
@@ -62,8 +56,7 @@ class Instruct extends Component {
           <textarea
             id='txtIntructions'
             ref={input => this.textInstructions = input}
-            onKeyUp={this.validateInstruction}
-            onBlur={this.validateInstruction}
+            onChange={this.validateInstruction}
             cols='30'
             defaultValue={demoInstructions}
           >

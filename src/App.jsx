@@ -13,9 +13,6 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    this.addToStore = this.addToStore.bind(this);
-    this.filterStore = this.filterStore.bind(this);
-
     // getInitialState
     this.state = {
       initialStore: {},
@@ -24,7 +21,7 @@ class App extends Component {
     };
   }
 
-  addToStore(martians) {
+  addToStore = (martians) => {
     const store = { ...this.state.store };
 
     martians.forEach((m) => {
@@ -37,7 +34,7 @@ class App extends Component {
     // console.log(mars.getAll());
   }
 
-  filterStore(condition) {
+  filterStore = (condition) => {
     switch (condition) {
       case 'L':
         this.setState({ store: filterMars(mars.getAll().values(), false, 'isAlive') });

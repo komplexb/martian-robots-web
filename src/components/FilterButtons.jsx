@@ -1,14 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 
-
 class FilterButtons extends Component {
-  constructor(props) {
-    super(props);
 
-    this.marsViews = this.marsViews.bind(this);
-  }
-
-  marsViews(e, condition) {
+  marsViews = (e, condition) => {
     e.preventDefault();
     this.props.filterStore(condition);
   }
