@@ -7,7 +7,7 @@ class MarsList extends Component {
     const store = this.props.store;
 
     return (
-      <ul>
+      <ul className="MarsList">
         {
           Object.keys(store)
             .map(key => <MarsListItem key={key} details={store[key]} />)
