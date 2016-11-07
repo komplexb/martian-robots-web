@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { beingAsEmoji } from '../helpers';
+import { bounds } from '../config';
 
 const Recharts = require('recharts');
 
@@ -24,11 +25,14 @@ CustomTooltip.propTypes = {
 
 export default function MarsGrid(props) {
 
+  const boundsStr = <span>| Bounds: x: {bounds.x}, y: {bounds.y}</span>;
   const { ScatterChart, Scatter, XAxis, YAxis, ZAxis, CartesianGrid, Tooltip, Legend } = Recharts;
 
   return (
     <div>
-      <label htmlFor="">Mars</label>
+      <label htmlFor="">
+        Mars {bounds.isSet ? boundsStr : ''}
+      </label>
       <ScatterChart width={400} height={400} margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
         <XAxis dataKey={'x'} name='x' allowDecimals={true} />
         <YAxis dataKey={'y'} name='y' allowDecimals={true} />
