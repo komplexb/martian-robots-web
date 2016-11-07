@@ -62,6 +62,11 @@ class Instruct extends Component {
       this.state.txtInstructions.trim().split('\n').length >= 3);
   }
 
+  resetForm = (e) => {
+    e.preventDefault();
+    this.setState({txtInstructions: ''});
+  }
+
   render() {
     return (
       <form ref={input => this.instructionsForm = input} onSubmit={e => this.submitInstructions(e)}>
@@ -75,9 +80,11 @@ class Instruct extends Component {
           >
           </textarea>
         </label>
-        <button className='success button' disabled={this.isValidInstruction()} >Instruct</button>
-        &nbsp;&nbsp;
-        <button className='button' type='button' onClick={this.setDemoText} >Demo Instructions</button>
+        <div className='small expanded button-group'>
+          <button className='success button' disabled={this.isValidInstruction()} >Instruct</button>
+          <button className='button' type='button' onClick={this.setDemoText} >Demo Instructions</button>
+          <button className='button' type='button' onClick={this.resetForm} >Clear Instructions</button>
+        </div>
       </form>
     );
   }
