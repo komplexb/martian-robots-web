@@ -56,12 +56,6 @@ class Instruct extends Component {
     this.props.addToStore(afterInstructions);
   }
 
-  validateInstruction = () => {
-    // we need at least 3 lines to try and do anything valuable
-    this.submitBtn.disabled = !(this.textInstructions.value.length >= 0 &&
-      this.textInstructions.value.trim().split('\n').length >= 3);
-  }
-
   isValidInstruction = () => {
     // we need at least 3 lines to try and do anything valuable
     return !(this.state.txtInstructions.length >= 0 &&

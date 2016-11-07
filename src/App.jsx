@@ -51,7 +51,7 @@ class App extends Component {
   }
 
   filterStateStore = (type) => {
-    const store = this.state.store;
+    const {store} = this.state;
 
     return Object.keys(store)
       .filter(key => store[key].type === type)
