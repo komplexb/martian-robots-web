@@ -7,6 +7,7 @@ import './css/index.css';
 
 import App from './App';
 import NotFound from './components/NotFound';
+import Provider from './components/Provider';
 
 const Root = () => {
   return (
@@ -20,4 +21,4 @@ const Root = () => {
   )
 }
 
-ReactDOM.render(<Root/>, document.getElementById('root'));
+ReactDOM.render(<Provider><Root/></Provider>, document.getElementById('root'));

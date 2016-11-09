@@ -81,9 +81,9 @@ class Instruct extends Component {
           </textarea>
         </label>
         <div className='small expanded button-group'>
-          <button className='success button' disabled={this.isValidInstruction()} >Instruct</button>
-          <button className='button' type='button' onClick={this.setDemoText} >Demo</button>
-          <button className='button' disabled={this.state.txtInstructions.length === 0} type='button' onClick={this.resetForm} >Clear</button>
+          <button title='Run Instructions' className='success button' disabled={this.isValidInstruction()} >Instruct</button>
+          <button title='Insert Demo Instructions' className='button' type='button' onClick={this.setDemoText} >Demo</button>
+          <button title='Clear Instructions' className='button' disabled={this.state.txtInstructions.length === 0} type='button' onClick={this.resetForm} >Clear</button>
         </div>
       </form>
     );

@@ -3,6 +3,7 @@ import Instruct from './components/Instruct';
 import MarsList from './components/MarsList';
 import MarsGrid from './components/MarsGrid';
 import FilterButtons from './components/FilterButtons';
+import connect from './libs/connect';
 
 import { default as Store } from './store';
 import { filterMars } from './controller';
@@ -61,6 +62,8 @@ class App extends Component {
   render() {
     return (
       <div className='row' id='content'>
+
+        {this.props.test}
         <div id='instruct' className='small-12 medium-6 large-4 columns'>
           <Instruct addToStore={this.addToStore} />
         </div>
@@ -76,4 +79,6 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect(() => ({
+  test: 'test'
+}))(App);
