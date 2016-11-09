@@ -29,6 +29,8 @@ export default class MarsStore {
     console.log('update martian', martian)
   }
   delete(name) {
-    console.log('delete martian', name)
+    this.setState({
+      store: this.store.filter(martian => martian.name !== name)
+    })
   }
 }

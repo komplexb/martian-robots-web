@@ -1,11 +1,13 @@
 import React, { PropTypes } from 'react';
 
-export default function MarsListItem(props) {
-  const {details} = props;
+// Remember that this declaration is equivalent to: const {details} = props;
+export default function MarsListItem({details, onDelete = () => {}}) {
   const style = (details.isAlive === false) ? 'MarsListItem__lost' : '';
   return (
     <li className={style}>
-      {details.status}
+      <span>{details.status}</span>
+      &nbsp;
+      <button className="alert badge" onClick={onDelete.bind(null, details.name)} >x</button>
     </li>
   );
 }

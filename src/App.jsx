@@ -29,6 +29,12 @@ class App extends Component {
     });
   }
 
+  deleteFromStore = (name, e) => {
+    // Avoid bubbling to edit
+    e.stopPropagation();
+    this.props.MarsActions.delete(name);
+  }
+
   filterStore = (condition) => {
     switch (condition) {
       case 'L':
@@ -62,7 +68,7 @@ class App extends Component {
         </div>
         <div id='filter' className="small-12 medium-6 large-4 columns">
           <FilterButtons store={store} filterStore={this.filterStore} />
-          <MarsList store={store} />
+          <MarsList store={store} onDelete={this.deleteFromStore} />
         </div>
         <div id='grid' className='small-12 medium-12 large-4 columns'>
           <MarsGrid robots={this.filterStateStore('Robot')} martians={this.filterStateStore('Martian')} />

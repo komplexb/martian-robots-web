@@ -31,3 +31,12 @@ body {
 .MarsListItem__lost {
   text-decoration: line-through;
 }
+
+.MarsList {
+  list-style: none;
+  margin-left: 0;
+}
+
+button.badge {
+  line-height: inherit;
+}
