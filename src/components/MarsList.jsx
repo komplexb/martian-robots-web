@@ -1,31 +1,36 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import MarsListItem from './MarsListItem';
+import EditListItem from './EditListItem';
 
-class MarsList extends Component {
-
-  render() {
-    const {store} = this.props;
-
-    return (
-      <ul className="MarsList">
-        {
-          Object.keys(store)
-            .map(key => <MarsListItem
-              key={key}
-              details={store[key]}
-              onDelete={this.props.onDelete} />
-            )
+export default function MarsList ({store,
+  onItemClick = () => {}, onEdit = () => {}, onDelete = () => {}}) {
+  return (
+    <ul className="MarsList">
+      {
+        store.map(({name, editing, status}) => {
+          return <li className='MarsListItem' key={name}>
+            <MarsListItem>
+              <span>{status}</span>
+              &nbsp;
+              <EditListItem
+                editing={editing}
+                value={status}
+                onClick={onItemClick.bind(null, name)}
+                onEdit={onEdit.bind(null, name)}
+              />
+              &nbsp;
+              <button className="alert badge" onClick={onDelete.bind(null, name)} >x</button>
+            </MarsListItem>
+          </li>
         }
-      </ul>
-    );
-  }
-
-  static propTypes = {
-    store: PropTypes.oneOfType([
-      PropTypes.object,
-      PropTypes.array,
-    ])
-  };
+      )}
+    </ul>
+  );
 }
 
-export default MarsList;
+MarsList.propTypes = {
+  store: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.array,
+  ])
+};

@@ -25,9 +25,19 @@ export default class MarsStore {
       store: this.store.concat(martian)
     });
   }
-  update(martian) {
-    console.log('update martian', martian)
+
+  update(updatedMartian) {
+    this.setState({
+      store: this.store.map(martian => {
+        if(martian.name === updatedMartian.name) {
+          return Object.assign({}, martian, updatedMartian);
+        }
+
+        return martian;
+      })
+    });
   }
+
   delete(name) {
     this.setState({
       store: this.store.filter(martian => martian.name !== name)

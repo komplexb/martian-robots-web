@@ -5,6 +5,9 @@ import MarsGrid from './components/MarsGrid';
 import FilterButtons from './components/FilterButtons';
 import connect from './libs/connect';
 import MarsActions from './actions/MarsActions';
+import Robot from './classes/martianRobot';
+import Martian from './classes/martian';
+import { instruct } from './controller';
 
 import { default as Store } from './store';
 import { filterMars } from './controller';
@@ -29,10 +32,30 @@ class App extends Component {
     });
   }
 
-  deleteFromStore = (name, e) => {
+  deleteItem = (name, e) => {
     // Avoid bubbling to edit
     e.stopPropagation();
     this.props.MarsActions.delete(name);
+  }
+
+  toggleEditItem = (name) => {
+    this.props.MarsActions.update({name, editing: true});
+    // console.log(name);
+  }
+
+  getMartian(x,y,o,t) {
+    if(t === 'Martian') {
+      return new Martian('',x,y,o);
+    }
+    return new Robot('',x,y,o);
+  }
+
+  editItem = (name, value) => {
+    const { store } = this.props;
+    const [{x, y, orientation: o, type: t}] = store.filter(martian => martian.name === name);
+    console.log(this.getMartian(x, y, o, t));
+    console.log(x,y,t, value);
+    // this.props.MarsActions.update({name, editing: false});
   }
 
   filterStore = (condition) => {
@@ -68,7 +91,11 @@ class App extends Component {
         </div>
         <div id='filter' className="small-12 medium-6 large-4 columns">
           <FilterButtons store={store} filterStore={this.filterStore} />
-          <MarsList store={store} onDelete={this.deleteFromStore} />
+          <MarsList
+          store={store}
+          onItemClick={this.toggleEditItem}
+          onEdit={this.editItem}
+          onDelete={this.deleteItem} />
         </div>
         <div id='grid' className='small-12 medium-12 large-4 columns'>
           <MarsGrid robots={this.filterStateStore('Robot')} martians={this.filterStateStore('Martian')} />

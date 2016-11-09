@@ -28,6 +28,11 @@ body {
   stroke: gray;
 }
 
+.MarsListItem input {
+  display: inline-block;
+  width: auto;
+}
+
 .MarsListItem__lost {
   text-decoration: line-through;
 }
