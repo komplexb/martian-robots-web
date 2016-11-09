@@ -40,3 +40,12 @@ body {
 button.badge {
   line-height: inherit;
 }
+
+.linkbutton {
+  color: #2199e8;
+  text-decoration: none;
+  line-height: inherit;
+  cursor: pointer;
+}
+.linkbutton:hover, .linkbutton:focus {
+  color: #1585cf; }
