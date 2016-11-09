@@ -4,6 +4,7 @@ import MarsList from './components/MarsList';
 import MarsGrid from './components/MarsGrid';
 import FilterButtons from './components/FilterButtons';
 import connect from './libs/connect';
+import MarsActions from './actions/MarsActions';
 
 import { default as Store } from './store';
 import { filterMars } from './controller';
@@ -23,16 +24,9 @@ class App extends Component {
   }
 
   addToStore = (martians) => {
-    const store = { ...this.state.store };
-
     martians.forEach((m) => {
-      if (mars.getAll().size < mars.add(m)) {
-        store[m.name] = m.plainObject;
-        this.setState({ store: store });
-      }
+      this.props.MarsActions.create(m.plainObject);
     });
-
-    // console.log(mars.getAll());
   }
 
   filterStore = (condition) => {
@@ -52,7 +46,7 @@ class App extends Component {
   }
 
   filterStateStore = (type) => {
-    const {store} = this.state;
+    const {store} = this.props;
 
     return Object.keys(store)
       .filter(key => store[key].type === type)
@@ -60,16 +54,15 @@ class App extends Component {
   }
 
   render() {
+    const { store } = this.props;
     return (
       <div className='row' id='content'>
-
-        {this.props.test}
         <div id='instruct' className='small-12 medium-6 large-4 columns'>
           <Instruct addToStore={this.addToStore} />
         </div>
         <div id='filter' className="small-12 medium-6 large-4 columns">
-          <FilterButtons store={this.state.store} filterStore={this.filterStore} />
-          <MarsList store={this.state.store} />
+          <FilterButtons store={store} filterStore={this.filterStore} />
+          <MarsList store={store} />
         </div>
         <div id='grid' className='small-12 medium-12 large-4 columns'>
           <MarsGrid robots={this.filterStateStore('Robot')} martians={this.filterStateStore('Martian')} />
@@ -79,6 +72,8 @@ class App extends Component {
   }
 }
 
-export default connect(() => ({
-  test: 'test'
-}))(App);
+export default connect(({store}) => ({
+  store
+}), {
+  MarsActions
+})(App);

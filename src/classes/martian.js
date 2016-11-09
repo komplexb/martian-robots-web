@@ -82,6 +82,10 @@ export default class Martian {
     return str;
   }
 
+  get status() {
+    return this.toString(true);
+  }
+
   /**
    *
    * @param {string} direction: sets new orientation based on L/R direction
@@ -133,6 +137,7 @@ export default class Martian {
       name: this.name,
       x: this.x,
       y: this.y,
+      orientation: this.orientation,
       isAlive: this.isAlive,
       type: this.type,
       status: this.toString(true)
