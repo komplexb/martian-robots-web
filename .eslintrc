@@ -1,28 +1,22 @@
 {
+  "extends": [
+    "eslint:recommended", "plugin:react/recommended"
+  ],
+  "parser": "babel-eslint",
   "env": {
-    "es6": true,
     "browser": true,
-    "node": true
+    "node": true,
+    "mocha": true
   },
-  "extends": "airbnb",
+  "plugins": [
+    "react"
+  ],
   "rules": {
-    "no-console": 1,
-    "no-underscore-dangle": 0,
-    "comma-dangle": 0,
-    "one-var": 0,
-    "one-var-declaration-per-line": 0,
-    "padded-blocks": ["error", { "blocks": "never" }],
-    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
-    "prefer-default-export": 0,
-    "brace-style": ["error", "stroustrup"],
-    "max-len": [1, { "ignoreComments": true, "ignoreTrailingComments": true }],
-    "class-methods-use-this": 1,
-    "space-before-function-paren": ["error", "never"],
-    "object-shorthand": 1,
-    "jsx-quotes": ["error", "prefer-single"],
-    "prop-types": 1,
-    "no-return-assign": 1,
-    "self-closing-comp": 1,
-    "jsx-boolean-value": 0
+    "quotes": [2, "single"],
+    "no-console": 0,
+    "no-unused-vars": 0,
+    "react/display-name": 0,
+    "react/prop-types": 0,
+    "react/no-multi-comp": 0
   }
 }
