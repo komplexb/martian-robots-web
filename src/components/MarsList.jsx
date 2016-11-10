@@ -8,9 +8,10 @@ export default function MarsList ({store,
     <ul className="MarsList">
       {
         store.map(({name, editing, status, isAlive}) => {
+          const style = (isAlive === false) ? 'MarsListItem__lost' : '';
           return <li className='MarsListItem' key={name}>
             <MarsListItem>
-              <span>{status}</span>
+              <span className={style}>{status}</span>
               &nbsp;
               <EditListItem
                 editing={editing}

@@ -34,6 +34,7 @@ class Edit extends Component {
 
     return <input
       type='text'
+      placeholder='FRRFLLFFRRFLL'
       autoFocus={true}
       onBlur={this.finishEdit}
       onKeyPress={this.checkEnter}
