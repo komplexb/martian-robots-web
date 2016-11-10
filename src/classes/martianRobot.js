@@ -1,7 +1,7 @@
 /** @module Martian Robot **/
 
 import Martian from './martian';
-import { isPosSafe } from '../helpers';
+import { isPositiveNumber, isPosSafe } from '../helpers';
 import { bounds } from '../config';
 import { lostList } from '../store';
 
@@ -15,7 +15,7 @@ const _hasScent = new WeakMap();
  * @extends Martian
  */
 export default class MartianRobot extends Martian {
-  
+
    /**
    *
    * @param {string}   name        robot name: defaults to time string
@@ -27,6 +27,8 @@ export default class MartianRobot extends Martian {
    */
   constructor(name, x, y, orientation) {
     super(name, x, y, orientation);
+    this._x = (isPositiveNumber(x) && x <= bounds.point.get('x')) ? x : 0;
+    this._y = (isPositiveNumber(y) && y <= bounds.point.get('y')) ? y : 0;
     this._isAlive = true;
 
     /**

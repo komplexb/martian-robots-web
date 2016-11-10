@@ -12,7 +12,7 @@ export default class MarsStore {
         isAlive: true,
         name: 'hej-1478664304452',
         orientation: 'S',
-        status: 'Robot 1 1 S',
+        status: 'Martian 1 1 S',
         type: 'Martian',
         x: 1,
         y: 1

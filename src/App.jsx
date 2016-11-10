@@ -43,19 +43,23 @@ class App extends Component {
     // console.log(name);
   }
 
-  getMartian(x,y,o,t) {
+  getMartian(m) {
+    const {name, x, y, orientation: o, type: t} = m;
     if(t === 'Martian') {
-      return new Martian('',x,y,o);
+      return new Martian(name, x, y, o);
     }
-    return new Robot('',x,y,o);
+    return new Robot(name, x, y, o);
   }
 
   editItem = (name, value) => {
     const { store } = this.props;
-    const [{x, y, orientation: o, type: t}] = store.filter(martian => martian.name === name);
-    console.log(this.getMartian(x, y, o, t));
-    console.log(x,y,t, value);
-    // this.props.MarsActions.update({name, editing: false});
+    if(value.trim().length > 0) {
+      const m = instruct(this.getMartian(...store.filter(martian => martian.name === name)), value.trim());
+      this.props.MarsActions.update({...m.plainObject, editing: false});
+    }
+    else {
+      this.props.MarsActions.update({name, editing: false});
+    }
   }
 
   filterStore = (condition) => {

@@ -7,7 +7,7 @@ export default function MarsList ({store,
   return (
     <ul className="MarsList">
       {
-        store.map(({name, editing, status}) => {
+        store.map(({name, editing, status, isAlive}) => {
           return <li className='MarsListItem' key={name}>
             <MarsListItem>
               <span>{status}</span>
@@ -17,6 +17,7 @@ export default function MarsList ({store,
                 value={status}
                 onClick={onItemClick.bind(null, name)}
                 onEdit={onEdit.bind(null, name)}
+                disabled={!isAlive}
               />
               &nbsp;
               <button className="alert badge" onClick={onDelete.bind(null, name)} >x</button>

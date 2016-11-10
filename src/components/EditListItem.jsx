@@ -1,6 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 
-export default function({editing, value, onEdit, ...props}) {
+export default function({editing, value, onEdit, disabled, ...props}) {
   if(editing) {
     return <Edit
       value={value}
@@ -9,7 +9,7 @@ export default function({editing, value, onEdit, ...props}) {
     />;
   }
 
-  return <button className="linkbutton" {...props}>Edit</button>;
+  return <button className="linkbutton" disabled={disabled} {...props}>Edit</button>;
 }
 
 class Edit extends Component {

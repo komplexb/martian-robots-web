@@ -21,9 +21,9 @@ export default class Martian {
    * @param {boolean} isAlive     martian status, defaults to true
    */
   constructor(name, x, y, orientation) {
-    this._name = (name.trim().length === 0) ? Date.now().toString() : `${name}-${Date.now()}`;
-    this._x = (isPositiveNumber(x) && x <= bounds.point.get('x')) ? x : 0;
-    this._y = (isPositiveNumber(y) && y <= bounds.point.get('y')) ? y : 0;
+    this._name = (name.trim().length === 0) ? Date.now().toString() : name;
+    this._x = isPositiveNumber(x) ? x : 0;
+    this._y = isPositiveNumber(y) ? y : 0;
     this._orientation = (cp.isValidPoint(orientation)) ? orientation.toUpperCase() : 'N';
   }
 
