@@ -17,9 +17,7 @@ class App extends Component {
 
     // getInitialState
     this.state = {
-      initialStore: {},
-      store: {},
-      lostList: {}
+      filterMode: 'A'
     };
   }
 
@@ -40,38 +38,43 @@ class App extends Component {
   }
 
   filterStore = (condition) => {
-    switch (condition) {
+    this.setState({ filterMode: condition })
+  }
+
+  filteredStore = () => {
+    switch (this.state.filterMode) {
       case 'L':
-        this.setState({ store: filterMars(mars.getAll().values(), false, 'isAlive') });
-        break;
+        return this.filterStateStore(false, 'isAlive');
       case 'R':
-        this.setState({ store: filterMars(mars.getAll().values(), 'Robot') });
-        break;
+        return this.filterStateStore('Robot');
       case 'M':
-        this.setState({ store: filterMars(mars.getAll().values(), 'Martian') });
-        break;
+        return this.filterStateStore('Martian');
       default:
-        this.setState({ store: [...mars.getAll().values()].map(value => value.plainObject) });
+        return this.props.store;
     }
   }
 
-  filterStateStore = (type) => {
+  filterStateStore = (condition, property = 'type') => {
     const {store} = this.props;
 
     return Object.keys(store)
-      .filter(key => store[key].type === type)
+      .filter(key => store[key][property] === condition)
       .map(value => store[value]);
   }
 
   render() {
-    const { store } = this.props;
+    const store = this.filteredStore();
+    // console.log(store);
     return (
       <div className='row' id='content'>
         <div id='instruct' className='small-12 medium-6 large-4 columns'>
           <Instruct addToStore={this.addToStore} />
         </div>
         <div id='filter' className="small-12 medium-6 large-4 columns">
-          <FilterButtons store={store} filterStore={this.filterStore} />
+          <FilterButtons
+          store={store}
+          filterStore={this.filterStore} />
+
           <MarsList
           store={store}
           onEdit={this.editItem}

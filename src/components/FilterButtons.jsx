@@ -20,7 +20,7 @@ class FilterButtons extends Component {
         onClick={e => this.marsViews(e, param)}>{icon}</button>;
     });
     // not in filter array because it shouldn't be disabled at any point
-    FilterButton.unshift(<button className='button' key='0' onClick={e => this.marsViews(e)} title='Reset Filter'>🔁</button>);
+    FilterButton.unshift(<button className='button' key='0' onClick={e => this.marsViews(e, 'A')} title='Reset Filter'>🔁</button>);
 
     return (
       <div>
