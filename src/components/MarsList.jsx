@@ -7,21 +7,20 @@ export default function MarsList ({store,
   return (
     <ul className="MarsList">
       {
-        store.map(({name, editing, status, isAlive}) => {
-          const style = (isAlive === false) ? 'MarsListItem__lost' : '';
-          return <li className='MarsListItem' key={name}>
+        store.map((m) => {
+          const style = (m.isAlive === false) ? 'MarsListItem__lost' : '';
+          return <li className='MarsListItem' key={m.name}>
             <MarsListItem>
-              <span className={style}>{status}</span>
+              <span className={style}>{m.status}</span>
               &nbsp;
               <EditListItem
-                editing={editing}
-                value={status}
-                onClick={onItemClick.bind(null, name)}
-                onEdit={onEdit.bind(null, name)}
-                disabled={!isAlive}
+                value={m.status}
+                onEdit={onEdit}
+                disabled={!m.isAlive}
+                martian={m}
               />
               &nbsp;
-              <button className="alert badge" onClick={onDelete.bind(null, name)} >x</button>
+              <button className="alert badge" onClick={onDelete.bind(null, m.name)} >x</button>
             </MarsListItem>
           </li>
         }

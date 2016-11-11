@@ -1,7 +1,6 @@
 /** @module Martian */
 
 import { isPositiveNumber } from '../helpers';
-import { bounds } from '../config';
 import CardinalPoints from './cardinalPoints';
 
 const cp = new CardinalPoints();

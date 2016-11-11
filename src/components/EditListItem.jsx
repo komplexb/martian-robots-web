@@ -1,18 +1,40 @@
 import React, { PropTypes, Component } from 'react';
+import Robot from '../classes/martianRobot';
+import Martian from '../classes/martian';
+import { instruct } from '../controller';
 
-export default function({editing, value, onEdit, disabled, ...props}) {
-  if(editing) {
-    return <Edit
-      value={value}
-      onEdit={onEdit}
-      {...props}
-    />;
+export default class EditListItem extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {editing: false};
   }
 
-  return <button className="linkbutton" disabled={disabled} {...props}>Edit</button>;
+  toggleEditItem = (editing) => {
+    this.setState({editing});
+  }
+
+  render() {
+    if(this.state.editing) {
+      return <Edit
+        value={this.props.value}
+        onEdit={this.props.onEdit}
+        toggleEditItem={this.toggleEditItem}
+        {...this.props}
+      />;
+    }
+
+    return <button
+      className="linkbutton"
+      disabled={this.props.disabled}
+      onClick={this.toggleEditItem.bind(null, true)}
+      >Edit
+    </button>;
+  }
 }
 
 class Edit extends Component {
+
   checkEnter = (e) => {
     if(e.key === 'Enter') {
       this.finishEdit(e);
@@ -22,16 +44,25 @@ class Edit extends Component {
   finishEdit = (e) => {
     const value = e.target.value;
 
-    // console.log('finishEdit', value);
-
     if(this.props.onEdit) {
-      this.props.onEdit(value);
+      if(value.trim().length > 0) {
+        const m = instruct(this.getMartian(this.props.martian), value.trim());
+        this.props.onEdit(m);
+      }
     }
+
+    this.props.toggleEditItem(false);
+  }
+
+  getMartian(m) {
+    const {name, x, y, orientation: o, type: t} = m;
+    if(t === 'Martian') {
+      return new Martian(name, x, y, o);
+    }
+    return new Robot(name, x, y, o);
   }
 
   render() {
-    const {value, ...props} = this.props;
-
     return <input
       type='text'
       placeholder='FRRFLLFFRRFLL'
