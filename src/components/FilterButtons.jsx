@@ -4,7 +4,7 @@ class FilterButtons extends Component {
 
   marsViews = (e, condition) => {
     e.preventDefault();
-    this.props.filterStore(condition);
+    this.props.setFilterMode(condition);
   }
 
   render() {
@@ -33,7 +33,7 @@ class FilterButtons extends Component {
   }
 
   static propTypes = {
-    filterStore: PropTypes.func.isRequired,
+    setFilterMode: PropTypes.func.isRequired,
     store: PropTypes.oneOfType([
       PropTypes.object,
       PropTypes.array,

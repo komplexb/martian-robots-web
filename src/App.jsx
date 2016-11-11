@@ -37,26 +37,24 @@ class App extends Component {
     this.props.MarsActions.update({...martian.plainObject});
   }
 
-  filterStore = (condition) => {
+  setFilterMode = (condition) => {
     this.setState({ filterMode: condition })
   }
 
   filteredStore = () => {
     switch (this.state.filterMode) {
       case 'L':
-        return this.filterStateStore(false, 'isAlive');
+        return this.filterStateStore(false, 'isAlive', undefined);
       case 'R':
-        return this.filterStateStore('Robot');
+        return this.filterStateStore('Robot', undefined, undefined);
       case 'M':
-        return this.filterStateStore('Martian');
+        return this.filterStateStore('Martian', undefined, undefined);
       default:
         return this.props.store;
     }
   }
 
-  filterStateStore = (condition, property = 'type') => {
-    const {store} = this.props;
-
+  filterStateStore = (condition, property = 'type', store = this.props.store) => {
     return Object.keys(store)
       .filter(key => store[key][property] === condition)
       .map(value => store[value]);
@@ -73,7 +71,7 @@ class App extends Component {
         <div id='filter' className="small-12 medium-6 large-4 columns">
           <FilterButtons
           store={store}
-          filterStore={this.filterStore} />
+          setFilterMode={this.setFilterMode} />
 
           <MarsList
           store={store}
@@ -81,7 +79,9 @@ class App extends Component {
           onDelete={this.deleteItem} />
         </div>
         <div id='grid' className='small-12 medium-12 large-4 columns'>
-          <MarsGrid robots={this.filterStateStore('Robot')} martians={this.filterStateStore('Martian')} />
+          <MarsGrid
+          robots={this.filterStateStore('Robot', undefined, store)}
+          martians={this.filterStateStore('Martian', undefined, store)} />
         </div>
       </div>
     );
