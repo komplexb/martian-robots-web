@@ -1,6 +1,6 @@
 {
   "name": "martian-robots-web",
-  "version": "0.1.0",
+  "version": "0.1.5",
   "private": true,
   "devDependencies": {
     "eslint": "^3.9.0",
@@ -27,6 +27,8 @@
     "surge": "surge build --domain clumsy-year.surge.sh",
     "deploy": "surge build --domain clumsy-year.surge.sh",
     "predeploy": "npm run build",
+    "stage": "surge build --domain stage-mr.surge.sh",
+    "prestage": "npm run build",
     "lt": "lt --port 3000 --subdomain mrobots"
   }
 }
