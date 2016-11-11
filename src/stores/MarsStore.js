@@ -7,17 +7,7 @@ export default class MarsStore {
 
     this.bindActions(MarsActions);
 
-    this.store = [
-      {
-        isAlive: true,
-        name: 'hej-1478664304452',
-        orientation: 'S',
-        status: 'Martian 1 1 S',
-        type: 'Martian',
-        x: 1,
-        y: 1
-      }
-    ];
+    this.store = [];
   }
 
   create(martian) {
