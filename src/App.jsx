@@ -5,6 +5,7 @@ import MarsGrid from './components/MarsGrid';
 import FilterButtons from './components/FilterButtons';
 import connect from './libs/connect';
 import MarsActions from './actions/MarsActions';
+import { bounds, lostList } from './config';
 
 import { default as Store } from './store';
 import { filterMars } from './controller';
@@ -21,7 +22,21 @@ class App extends Component {
     };
   }
 
+  componentWillMount() {
+    // restore bounds from localStorage
+    if (localStorage.getItem('xBounds') && localStorage.getItem('yBounds')) {
+      bounds.x = localStorage.xBounds;
+      bounds.y = localStorage.yBounds;
+    }
+
+    // restore lostList from localStorage
+    if (localStorage.getItem('lostList')) {
+      lostList.push(JSON.parse(localStorage.lostList));
+    }
+  }
+
   addToStore = (martians) => {
+    // console.log(martians);
     martians.forEach((m) => {
       this.props.MarsActions.create(m.plainObject);
     });

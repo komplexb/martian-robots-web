@@ -2,8 +2,7 @@
 
 import Martian from './martian';
 import { isPositiveNumber, isPosSafe } from '../helpers';
-import { bounds } from '../config';
-import { lostList } from '../store';
+import { bounds, lostList } from '../config';
 
 const _processMotion = new WeakMap();
 const _hasScent = new WeakMap();
@@ -53,7 +52,7 @@ export default class MartianRobot extends Martian {
           break;
         case 1:
           this._isAlive = false;
-          lostList.push(this.point);
+          lostList.push([this.point]);
           break;
         case 2:
           this[axis] = tempPos;
@@ -82,7 +81,7 @@ export default class MartianRobot extends Martian {
      * - 2: if the next move is safe let it happen
      */
     _hasScent.set(this, (pointStr, tempPos, axisBounds) => {
-      if (lostList.find((point => point === pointStr)) &&
+      if (lostList.items.find((point => point === pointStr)) &&
         !isPosSafe(tempPos, axisBounds)) {
         return 0;
       }

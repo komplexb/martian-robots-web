@@ -48,10 +48,10 @@ class Instruct extends Component {
 
       // create a martian/robot with the line 1 of each instruction pair
       if (type.trim().toUpperCase() === 'M') {
-        return instruct(new Martian(chance.syllable(), Number.parseInt(x, 10), Number.parseInt(y, 10), o), instructionsStr);
+        return instruct(new Martian(chance.syllable({length: 5}), Number.parseInt(x, 10), Number.parseInt(y, 10), o), instructionsStr);
       }
 
-      return instruct(new Robot(chance.syllable(), Number.parseInt(x, 10), Number.parseInt(y, 10), o), instructionsStr);
+      return instruct(new Robot(chance.syllable({length: 5}), Number.parseInt(x, 10), Number.parseInt(y, 10), o), instructionsStr);
     });
     this.props.addToStore(afterInstructions);
   }

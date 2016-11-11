@@ -1,6 +1,6 @@
 /** module config */
 
-import { isPositiveNumber } from './helpers';
+import { isPositiveNumber, storageAvailable } from './helpers';
 
 /*
  * Default values
@@ -18,12 +18,18 @@ let x, y;
 export const bounds = {
   set x(value) {
     x = (isPositiveNumber(value) && value <= MAX_COORD) ? value : X_BOUNDS;
+    if (storageAvailable('localStorage')) {
+      localStorage.xBounds = x;
+    }
   },
   get x() {
     return x;
   },
   set y(value) {
     y = (isPositiveNumber(value) && value <= MAX_COORD) ? value : Y_BOUNDS;
+    if (storageAvailable('localStorage')) {
+      localStorage.yBounds = y;
+    }
   },
   get y() {
     return y;
@@ -35,3 +41,20 @@ export const bounds = {
     return (x > 0 && y > 0);
   }
 };
+
+
+let _lostList = []; // manages grid points of lost robots
+export const lostList = {
+  push(value) {
+    _lostList.push(...value);
+    localStorage.lostList = JSON.stringify(_lostList);
+  },
+
+  get items() {
+    return _lostList;
+  },
+
+  reset() {
+    _lostList = [];
+  }
+}
