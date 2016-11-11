@@ -1,3 +1,7 @@
+/*
+ * Reference
+ * http://survivejs.com/react/implementing-kanban/implementing-persistency/#implementing-a-wrapper-for-localstorage-
+ */
 export default storage => ({
   get(k) {
     try {
