@@ -16,12 +16,20 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    // getInitialState
+    /**
+     * Control state: http://jamesknelson.com/5-types-react-application-state/
+     * @filterMode: Set by FilterButtons Component
+     * to define how the store state is filtered
+     */
     this.state = {
       filterMode: 'A'
     };
   }
 
+  /* 
+   * Invoked once, both on the client and server, 
+   * immediately before the initial rendering occurs.
+   */
   componentWillMount() {
     // restore bounds from localStorage
     if (localStorage.getItem('xBounds') && localStorage.getItem('yBounds')) {
@@ -35,8 +43,11 @@ class App extends Component {
     }
   }
 
+  /**
+   * @martians: array of martians/robots
+   * to be added to state
+   */
   addToStore = (martians) => {
-    // console.log(martians);
     martians.forEach((m) => {
       this.props.MarsActions.create(m.plainObject);
     });
@@ -47,15 +58,27 @@ class App extends Component {
     e.stopPropagation();
     this.props.MarsActions.delete(name);
   }
-
+  
+  /**
+   * @martian: receives moved martian/robot as plain objectfrom 
+   * after being edited by EditListItem component
+   */
   editItem = (martian) => {
     this.props.MarsActions.update({...martian.plainObject});
   }
 
+  /**
+   * Handler for FilterButton component
+   * @condition to update state with
+   */
   setFilterMode = (condition) => {
     this.setState({ filterMode: condition })
   }
 
+  
+  /**
+   * Consumed by components in render method
+   */
   filteredStore = () => {
     switch (this.state.filterMode) {
       case 'L':
@@ -69,6 +92,12 @@ class App extends Component {
     }
   }
 
+  /**
+   * Utiltiy to filter store object
+   * @condition {string} compare against with
+   * @property {string} compare against martian/robot proerties
+   * @store {object} use the provided store to filter and map
+   */
   filterStateStore = (condition, property = 'type', store = this.props.store) => {
     return Object.keys(store)
       .filter(key => store[key][property] === condition)
@@ -77,7 +106,6 @@ class App extends Component {
 
   render() {
     const store = this.filteredStore();
-    // console.log(store);
     return (
       <div className='row' id='content'>
         <div id='instruct' className='small-12 medium-6 large-4 columns'>
@@ -103,6 +131,10 @@ class App extends Component {
   }
 }
 
+/*
+ * Reference
+ * http://survivejs.com/react/implementing-kanban/react-and-flux/#setting-up-connect-
+ */
 export default connect(({store}) => ({
   store
 }), {
