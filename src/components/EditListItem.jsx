@@ -7,6 +7,11 @@ export default class EditListItem extends Component {
   constructor(props) {
     super(props);
 
+    /**
+     * Control state: http://jamesknelson.com/5-types-react-application-state/
+     * @editing: Set by Edit linkbutton
+     * toggles between Edit linkbutton and Edit input field
+     */
     this.state = {editing: false};
   }
 
@@ -33,6 +38,7 @@ export default class EditListItem extends Component {
   }
 }
 
+
 class Edit extends Component {
 
   checkEnter = (e) => {
@@ -54,6 +60,11 @@ class Edit extends Component {
     this.props.toggleEditItem(false);
   }
 
+  /**
+   * 
+   * @param   {object} m plain object to derive martian/robot
+   * @returns {object} returns martian/robot
+   */
   getMartian(m) {
     const {name, x, y, orientation: o, type: t} = m;
     if(t === 'Martian') {

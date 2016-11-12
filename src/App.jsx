@@ -21,9 +21,7 @@ class App extends Component {
      * @filterMode: Set by FilterButtons Component
      * to define how the store state is filtered
      */
-    this.state = {
-      filterMode: 'A'
-    };
+    this.state = {filterMode: 'A'};
   }
 
   /* 
