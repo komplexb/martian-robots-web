@@ -7,10 +7,6 @@ import connect from './libs/connect';
 import MarsActions from './actions/MarsActions';
 import { bounds, lostList } from './config';
 
-import { default as Store } from './store';
-import { filterMars } from './controller';
-
-const mars = new Store();
 
 class App extends Component {
   constructor(props) {
@@ -24,8 +20,8 @@ class App extends Component {
     this.state = {filterMode: 'A'};
   }
 
-  /* 
-   * Invoked once, both on the client and server, 
+  /*
+   * Invoked once, both on the client and server,
    * immediately before the initial rendering occurs.
    */
   componentWillMount() {
@@ -56,9 +52,9 @@ class App extends Component {
     e.stopPropagation();
     this.props.MarsActions.delete(name);
   }
-  
+
   /**
-   * @martian: receives moved martian/robot as plain objectfrom 
+   * @martian: receives moved martian/robot as plain object
    * after being edited by EditListItem component
    */
   editItem = (martian) => {
@@ -69,11 +65,12 @@ class App extends Component {
    * Handler for FilterButton component
    * @condition to update state with
    */
-  setFilterMode = (condition) => {
+  setFilterMode = (condition, e) => {
+    e.stopPropagation();
     this.setState({ filterMode: condition })
   }
 
-  
+
   /**
    * Consumed by components in render method
    */
@@ -112,7 +109,7 @@ class App extends Component {
         <div id='filter' className="small-12 medium-6 large-4 columns">
           <FilterButtons
           store={store}
-          setFilterMode={this.setFilterMode} />
+          onClick={this.setFilterMode} />
 
           <MarsList
           store={store}
