@@ -61,7 +61,7 @@ class Edit extends Component {
   }
 
   /**
-   * 
+   *
    * @param   {object} m plain object to derive martian/robot
    * @returns {object} returns martian/robot
    */
@@ -77,6 +77,8 @@ class Edit extends Component {
     return <input
       type='text'
       placeholder='FRRFLLFFRRFLL'
+      title='Enter instructions as a combination of the letters "F", "R", "L"'
+      maxLength='100'
       autoFocus={true}
       onBlur={this.finishEdit}
       onKeyPress={this.checkEnter}
