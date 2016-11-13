@@ -1,7 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 
-class FilterButtons extends Component {
+export default class FilterButtons extends Component {
 
+  /**
+   * Used to update app state with filtered value from store
+   */
   marsViews = (e, condition) => {
     e.preventDefault();
     this.props.setFilterMode(condition);
@@ -19,7 +22,11 @@ class FilterButtons extends Component {
         title={title}
         onClick={e => this.marsViews(e, param)}>{icon}</button>;
     });
-    // not in filter array because it shouldn't be disabled at any point
+    
+    /*
+     * not in filter array because it shouldn't be disabled at any point
+     * basically ensures the user can undo if they filtered to zero values
+     */
     FilterButton.unshift(<button className='button' key='0' onClick={e => this.marsViews(e, 'A')} title='Reset Filter'>🔁</button>);
 
     return (
@@ -40,5 +47,3 @@ class FilterButtons extends Component {
     ])
   };
 }
-
-export default FilterButtons;
