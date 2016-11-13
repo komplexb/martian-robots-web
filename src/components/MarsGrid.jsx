@@ -12,7 +12,7 @@ const Recharts = require('recharts');
  * That way hover displays something like '🤖 3 3 ⬆️ 🆘'.
  * Would be nice to still have size though.
  * 
- * @param   {object}   props [[Description]]
+ * @param   {object}   props
  * @returns {React Component} Consumed by MarsGrid
  */
 export function CustomTooltip(props) {

@@ -2,6 +2,10 @@ import React, { PropTypes } from 'react';
 import MarsListItem from './MarsListItem';
 import EditListItem from './EditListItem';
 
+/**
+ * Renders the contents of store state in a list of <MarsListItem>
+ * <MarsListItem> shows item status and allows us to edit/delete an item
+ */
 export default function MarsList ({store,
   onItemClick = () => {}, onEdit = () => {}, onDelete = () => {}}) {
   return (
