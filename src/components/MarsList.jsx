@@ -24,7 +24,7 @@ export default function MarsList ({store,
                 martian={m}
               />
               &nbsp;
-              <button className="alert badge" onClick={onDelete.bind(null, m.name)} >x</button>
+              <button title='Delete' className="alert badge" onClick={onDelete.bind(null, m.name)} >x</button>
             </MarsListItem>
           </li>
         }
