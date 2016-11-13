@@ -4,6 +4,17 @@ import { bounds } from '../config';
 
 const Recharts = require('recharts');
 
+/**
+ * Component displayed when grid items are hovered or long pressed.
+ * Its contents are a bit hacky, 
+ * it only receives dataKeys x,y,z from the ScatterChart component.
+ * Z controls the item sizes, but I've passed a `status` string instead.
+ * That way hover displays something like '🤖 3 3 ⬆️ 🆘'.
+ * Would be nice to still have size though.
+ * 
+ * @param   {object}   props [[Description]]
+ * @returns {React Component} Consumed by MarsGrid
+ */
 export function CustomTooltip(props) {
   if (props.active) {
     const { payload } = props;
@@ -23,6 +34,13 @@ CustomTooltip.propTypes = {
   payload: PropTypes.array,
 };
 
+
+/**
+ * Displays MarsList items on a interactive grid.
+ * <Tooltip /> is set with <CustomTooltip />
+ * @param   {object}   props
+ * @returns {React Component}
+ */
 export default function MarsGrid(props) {
 
   const boundsStr = <span>| Bounds: x: {bounds.x}, y: {bounds.y}</span>;

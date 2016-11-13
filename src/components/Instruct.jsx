@@ -8,7 +8,7 @@ import Martian from '../classes/martian';
 
 const chance = new Chance();
 
-class Instruct extends Component {
+export default class Instruct extends Component {
 
   constructor(props) {
     super(props);
@@ -120,5 +120,3 @@ class Instruct extends Component {
   };
 
 }
-
-export default Instruct;
