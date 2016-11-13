@@ -15,16 +15,34 @@ class Instruct extends Component {
 
     this.state = {txtInstructions: ''};
   }
-
+  
+  /*
+   * Set state with the instruction value so we can use it
+   * to update a couple UI elements. 
+   * Since this is just 'component state', we don't need it to be persisted
+   * and it doesn't need to be managed at app level.
+   * @txtInstructions: set by #txtIntructions
+   * 
+   */
   handleInstructionChange = (event) => {
     this.setState({txtInstructions: event.target.value});
   }
 
+  
+  /**
+   * Make it easier for users to get started by using predefined instructions
+   */
   setDemoText = (e) => {
     e.preventDefault();
     this.setState({txtInstructions: demoInstructions});
   }
-
+  
+  
+  /**
+   * Handler for submitting instructions and updating application 
+   * state with data required to render MarsList, MarsGrid etc.
+   * TODO: Add error text for failed instructions.
+   */
   submitInstructions = (e) => {
     e.preventDefault();
 
@@ -56,12 +74,20 @@ class Instruct extends Component {
     this.props.addToStore(afterInstructions);
   }
 
+  
+  /**
+   * Toggles ability to submit instructions.
+   * We need at least 3 lines to try and do anything valuable.
+   */
   isValidInstruction = () => {
-    // we need at least 3 lines to try and do anything valuable
     return !(this.state.txtInstructions.length >= 0 &&
       this.state.txtInstructions.trim().split('\n').length >= 3);
   }
 
+  
+  /**
+   * Does what it says on the label: clears text from instruction area
+   */
   resetForm = (e) => {
     e.preventDefault();
     this.setState({txtInstructions: ''});
