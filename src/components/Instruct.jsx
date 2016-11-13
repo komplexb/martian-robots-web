@@ -13,7 +13,10 @@ export default class Instruct extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {txtInstructions: ''};
+    this.state = {
+      txtInstructions: '',
+      txtInstructionErrors: ''
+    };
   }
 
   /*
@@ -63,16 +66,34 @@ export default class Instruct extends Component {
 
       const [martianStr, instructionsStr] = currentInstructionSet;
       const [x, y, o, type = 'R'] = martianStr.trim().split(' ');
+      let tempMartian;
 
       // create a martian/robot with the line 1 of each instruction pair
-      if (type.trim().toUpperCase() === 'M') {
-        return instruct(new Martian(chance.syllable({length: 5}), Number.parseInt(x, 10), Number.parseInt(y, 10), o), instructionsStr);
+      try {
+        if (type.trim().toUpperCase() === 'M') {
+          tempMartian = new Martian(chance.syllable({length: 5}), Number.parseInt(x, 10), Number.parseInt(y, 10), o);
+        }
+        else {
+          tempMartian = new Robot(chance.syllable({length: 5}), Number.parseInt(x, 10), Number.parseInt(y, 10), o);
+        }
+      }
+      catch (e) {
+        // update error control
+        this.setState({txtInstructionErrors: 'You failed to make a martian/robot. Please check the readme.'});
+        return null;
       }
 
-      return instruct(new Robot(chance.syllable({length: 5}), Number.parseInt(x, 10), Number.parseInt(y, 10), o), instructionsStr);
+      try {
+        return instruct(tempMartian, instructionsStr);
+      }
+      catch (e) {
+        // update error control
+        this.setState({txtInstructionErrors: 'Your instructions failed. Please check the readme.'});
+      }
     });
+
     this.props.addToStore(afterInstructions);
-    this.setState({txtInstructions: ''}); // clear text area
+    this.setState({txtInstructions: '', txtInstructionErrors: ''}); // clear text area
   }
 
 
@@ -96,6 +117,8 @@ export default class Instruct extends Component {
   }
 
   render() {
+    const errMsg = this.state.txtInstructionErrors;
+    const InstructionErrors = errMsg.length > 0 ? <span id='InstructionErrors' className="alert label">{errMsg}</span> : null;
     return (
       <form ref={input => this.instructionsForm = input} onSubmit={e => this.submitInstructions(e)}>
         <label>
@@ -108,6 +131,7 @@ export default class Instruct extends Component {
           >
           </textarea>
         </label>
+        {InstructionErrors}
         <div className='small expanded button-group'>
           <button title='Run Instructions' className='success button' type='submit' disabled={this.isValidInstruction()} >Instruct</button>
           <button title='Insert Demo Instructions' className='button' type='button' onClick={this.setDemoText} >Demo</button>

@@ -54,3 +54,7 @@ button.badge {
 }
 .linkbutton:hover, .linkbutton:focus {
   color: #1585cf; }
+
+#InstructionErrors {
+  margin: 0px 0 10px;
+}
