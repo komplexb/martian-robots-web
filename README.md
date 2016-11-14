@@ -1,14 +1,15 @@
 ### Purpose ###
 *A do nothing demo/learning app to show that I can write all the codez.*  
-Jokes aside, I wanted to build something small to apply some of my learnings from the [reactforbeginners.com](https://goo.gl/4hT3DU) course. It essentially builds on my [CLI demo of Martian Robots](https://github.com/komplexb/martian-robots).  
+
+Jokes aside, I wanted to build something to apply some of my lessons from the [React for Beginners](https://goo.gl/4hT3DU) course. Ultimately users should be able to successfully perform CRUD actions. The app uses [Alt's](http://alt.js.org/) Flux implementation (yes I know all the cool kids use Redux) and persists state across reloads with localStorage.  
 
 ### How to use ###
-![How to use.](http://g.recordit.co/gkae2h6qRX.gif)  
-Instructions and associated values are valid for one session; i.e. only the values of the current session affect positions on the grid. A session is demarcated by clicking "Initialize Bots"; doing so clears all values from the previous session (except the 'lost' position values of previous robots).  
-1. Enter instructions or use the Sample Input.  
-2. Click "Instruct".  
-3. To validate app functionality, read the extract below to come up with valid instructions. Manually trace your instructions on along the grid to determine the final position and output. Insert these instructions into the app and test the output against your manual output.  
-4. Or try the CLI version: https://github.com/komplexb/martian-robots
+![How to use.](http://g.recordit.co/OW5WhVvfgi.gif)    
+- Visit: http://clumsy-year.surge.sh/
+- Enter instructions or use the Demo button.  
+- Click "Instruct".  
+- To validate app functionality, read the extract below to come up with valid instructions. Manually trace your instructions on along the grid to determine the final position and output. Insert these instructions into the app and test the output against your manual output.  
+- Or try the CLI version: https://github.com/komplexb/martian-robots
 
 ## About ##
 
@@ -80,3 +81,8 @@ FRRFLLFFRRFLLFFF
 - 3 3 N LOST => 🤖 3 3 ⬆️ 🆘
 - 2 3 S => 🤖 2 3 ⬇️
 - 3 6 N => 👾 3 6 ⬆️
+
+## ToDo
+- Make existing functional tests work in `create-react-app` project structure
+- Write UI tests
+- CSS Modules

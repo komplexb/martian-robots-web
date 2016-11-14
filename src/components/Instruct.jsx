@@ -78,7 +78,6 @@ export default class Instruct extends Component {
         }
       }
       catch (e) {
-        // update error control
         this.setState({txtInstructionErrors: 'You failed to make a martian/robot. Please check the readme.'});
         return null;
       }
@@ -87,7 +86,6 @@ export default class Instruct extends Component {
         return instruct(tempMartian, instructionsStr);
       }
       catch (e) {
-        // update error control
         this.setState({txtInstructionErrors: 'Your instructions failed. Please check the readme.'});
       }
     });
